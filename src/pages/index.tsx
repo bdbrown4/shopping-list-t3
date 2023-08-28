@@ -63,7 +63,7 @@ export default function Home() {
 
           <ul className="mt-4">
             {items.map((item) => {
-              const { id, name, checked } = item;
+              const { id, name } = item;
               return (
                 <li key={id} className="flex w-full items-center justify-between">
                   <div className="relative">
