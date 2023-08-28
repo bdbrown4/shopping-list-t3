@@ -11,7 +11,7 @@ datasource db {
 }
 
 model ShoppingItem {
-    id        String   @id @default(cuid())
-    name String
-    checked Boolean @default(false)
+    id          String   @id @default(cuid())
+    name        String
+    checked     Boolean @default(false)
 }
