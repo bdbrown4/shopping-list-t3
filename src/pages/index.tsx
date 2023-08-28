@@ -50,37 +50,39 @@ export default function Home() {
       {modalOpen && <ItemModal setModalOpen={setModalOpen} setItems={setItems} />}
 
       <main className="mx-auto my-12 max-w-3xl">
-        <div className="flex justify-between">
-          <h2 className="text-2xl font-semibold">My shopping list</h2>
-          <button
-            type="button"
-            onClick={() => setModalOpen(true)}
-            className="bg-violet-500 p-2 text-white text-sm rounded-md transition hover:bg-violet">
-            Add shopping item
-          </button>
-        </div>
+        <div className="mx-5">
+          <div className="flex justify-between">
+            <h2 className="text-2xl font-semibold">My shopping list</h2>
+            <button
+              type="button"
+              onClick={() => setModalOpen(true)}
+              className="bg-violet-500 p-2 text-white text-sm rounded-md transition hover:bg-violet">
+              Add shopping item
+            </button>
+          </div>
 
-        <ul className="mt-4">
-          {items.map((item) => {
-            const { id, name, checked } = item;
-            return (
-              <li key={id} className="flex w-full items-center justify-between">
-                <div className="relative">
-                  <div className="pointer-events-none absolute inset-0 flex origin-left items-center justify-center" >
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: checkedItems.some(item => item.id === id) ? "100%" : 0 }}
-                      transition={{ duration: 0.2, ease: "easeInOut" }}
-                      className="h-[2px] w-full translate-y-px bg-red-500"
-                    />
+          <ul className="mt-4">
+            {items.map((item) => {
+              const { id, name, checked } = item;
+              return (
+                <li key={id} className="flex w-full items-center justify-between">
+                  <div className="relative">
+                    <div className="pointer-events-none absolute inset-0 flex origin-left items-center justify-center" >
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: checkedItems.some(item => item.id === id) ? "100%" : 0 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="h-[2px] w-full translate-y-px bg-red-500"
+                      />
+                    </div>
+                    <span onClick={() => checkItem({ id, checked: checkedItems.some(item => item.id === id) ? false : true })}>{name}</span>
                   </div>
-                  <span onClick={() => checkItem({ id, checked: checkedItems.some(item => item.id === id) ? false : true })}>{name}</span>
-                </div>
-                <HiX onClick={() => deleteItem({ id })} className="text-lg text-red-500 cursor-pointer" />
-              </li>
-            )
-          })}
-        </ul>
+                  <HiX onClick={() => deleteItem({ id })} className="text-lg text-red-500 cursor-pointer" />
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </main>
     </>
   );
